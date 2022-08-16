@@ -1,0 +1,5 @@
+<div *ngFor="let movie of movies">
+    <h1>{{movie.title}}</h1>
+    <h1>{{movie.popularity}}</h1>
+    <img [src]="linkImage+movie.poster_path" alt="">
+</div>
