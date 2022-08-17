@@ -6,17 +6,24 @@
     [(ngModel)]="selectedCountry"
     (ngModelChange)="changeLanguage()"
     optionLabel="name"
-    filterBy="name"
     [showClear]="true"
     placeholder="Select a Country">
   </p-dropdown>
 </div>
 
 <div class="card-default" >
-  <div  *ngFor="let movie of movies">
-    <img class="movie-image" [src]="linkImage+movie.poster_path" alt="">
-    <h1>{{movie.title}}</h1>
-    <h1>{{movie.popularity}}</h1>
-    <h1>{{movie.vote_average}}</h1>
+  <div *ngFor="let movie of movies">
+    <div class="movie-info">
+      <img class="image" [src]="linkImage+movie.poster_path" alt="">
+      <h1 class="title">{{movie.title}}</h1>
+      <p-rating
+        [ngModel]="movie.vote_average | reduceNumberRating" 
+        [pTooltip]="movie.vote_average | reduceNumberRating | transformNumberString" 
+        [readonly]="true" [stars]="5" 
+        [cancel]="false"
+        tooltipPosition="bottom">
+      </p-rating>
+      <p-button label="WatchList" icon="pi pi-plus"></p-button>
+    </div>
   </div>
 </div>
