@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { MoviePopularPages } from '../../models/movie-popular.model';
 import { Movie } from '../../models/movie.models';
 
 
@@ -14,7 +15,7 @@ export class MovieDbService {
 
   constructor(private http: HttpClient) { }
 
-  getAllMoviePopular(page: number, language: string): Observable<any> {
-    return this.http.get<any>(`${this.apiURL}movie/popular?api_key=${this.apiKEY}&language=${language}&page=${page}`)
+  getAllMoviePopular(page: number, language: string): Observable<MoviePopularPages> {
+    return this.http.get<MoviePopularPages>(`${this.apiURL}movie/popular?api_key=${this.apiKEY}&language=${language}&page=${page}`)
   }
 }
