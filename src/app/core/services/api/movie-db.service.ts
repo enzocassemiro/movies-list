@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { MoviePopularPages } from '../../models/movie-popular.model';
-import { Movie } from '../../models/movie.models';
 
 
 @Injectable({
