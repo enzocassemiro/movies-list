@@ -1,8 +1,11 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { DropdownModule } from 'primeng/dropdown';
 
 import { MovieRoutingModule } from './movie-routing.module';
 import { PopularComponent } from './pages/popular/popular.component';
+
 
 
 @NgModule({
@@ -11,7 +14,9 @@ import { PopularComponent } from './pages/popular/popular.component';
   ],
   imports: [
     CommonModule,
-    MovieRoutingModule
+    MovieRoutingModule,
+    DropdownModule,
+    FormsModule
   ]
 })
 export class MovieModule { }

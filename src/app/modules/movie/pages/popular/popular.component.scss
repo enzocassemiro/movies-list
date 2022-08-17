@@ -1,0 +1,12 @@
+.card-default {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 440px);
+  grid-auto-rows: auto;
+  gap: 1em;
+  place-content: center center;
+  margin-top: 20px;
+
+  .movie-image{
+    max-width: 400px;
+  }
+}
