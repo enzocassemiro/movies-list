@@ -1,0 +1,32 @@
+<div>
+    <p-dropdown
+      appendTo="body"
+      [options]="countries"
+      [(ngModel)]="selectedCountry"
+      (ngModelChange)="changeLanguage()"
+      optionLabel="name"
+      [showClear]="false"
+      placeholder="Select a Country">
+    </p-dropdown>
+  </div>
+  
+  <div class="card-default" >
+    <div *ngFor="let movie of movies">
+      <div class="movie-info">
+        <img class="image" [src]="linkImage+movie.poster_path" alt="">
+        <h1 class="title">{{movie.title}}</h1>
+        <p-rating
+          [ngModel]="movie.vote_average | reduceNumberRating" 
+          [pTooltip]="movie.vote_average | reduceNumberRating | transformNumberString" 
+          [readonly]="true" [stars]="5" 
+          [cancel]="false"
+          tooltipPosition="bottom">
+        </p-rating>
+      <h1>{{movie.vote_average | reduceNumberRating}}</h1>
+      <p-button label="WatchList" icon="pi pi-plus"></p-button>
+      </div>
+    </div>
+  </div>
+  
+  <p-paginator [rows]="20" [totalRecords]="695253" (onPageChange)="onPageChange($event)"></p-paginator>
+  
