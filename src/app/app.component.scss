@@ -1,6 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Karla:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
 .app-main {
     background-color: whitesmoke;
     min-height: 100%;
     display: grid;
     grid-template-rows: auto 1fr auto;
+}
+
+.header {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    padding: 20px 60px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;    
+    
+    .title {
+        display: flex;
+        place-content: center center;
+        text-align: center;
+        font-family: 'Karla', sans-serif;
+        font-size: 1.5em;
+        background: #11CF17;
+        background: linear-gradient(to right, #11CF17 21%, #000000 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .options {
+        display: flex;
+        place-content: center start;
+        align-items: center;
+        font-family: 'Roboto', sans-serif;
+        font-size: 1em;
+        margin-left: 50px;
+        gap: 20px;
+        
+        .movie {
+            cursor: pointer;
+            
+        }
+    }
+}
+
+.movie-option {
+    cursor: pointer;
 }

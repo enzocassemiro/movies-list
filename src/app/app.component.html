@@ -1,11 +1,15 @@
 <div class="app-main">
-<div>
-  <h1>Header</h1>
-  <h1 routerLink="/user" >User</h1>
-  <h1 routerLink="/movie/en/popular" >Popular Movies</h1>
-  <h1 routerLink="/movie/en/top_rated" >Top rated</h1>
-  <h1 routerLink="/movie/en/upcoming" >Upcoming Movies</h1>
-  <h1 routerLink="/movie/en/now_playing" >Now Playing Movies</h1>
+<div class="header">
+  <div class="title">
+    <h1>TWL</h1>
+  </div>
+  <div class="options">
+    <h3 class="movie" (mouseenter)="op.toggle($event)" (click)="op.toggle($event)">Movies</h3>    
+    <h3 style="text-decoration: line-through; cursor: not-allowed;">Series</h3>    
+  </div>
+  <div class="user">
+    <p-button routerLink="/user" label="My List" icon="pi pi-bookmark-fill"></p-button>
+  </div>
 </div>
 
 <main>
@@ -17,3 +21,13 @@
 </div>
 
 </div>
+
+
+<p-overlayPanel #op>
+  <ng-template  pTemplate>
+    <h4 class="movie-option" routerLink="/movie/popular" >Popular Movies</h4>
+    <h4 class="movie-option" routerLink="/movie/top_rated" >Top rated</h4>
+    <h4 class="movie-option" routerLink="/movie/upcoming" >Upcoming Movies</h4>
+    <h4 class="movie-option" routerLink="/movie/now_playing" >Now Playing Movies</h4>
+  </ng-template>
+</p-overlayPanel>
