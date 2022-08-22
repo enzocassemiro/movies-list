@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 import { Country } from 'src/app/core/models/country.model';
 import { Movie } from 'src/app/core/models/movie.models';
 import { Page } from 'src/app/core/models/pages.model';
@@ -11,17 +11,19 @@ import { MovieDbService } from 'src/app/core/services/api/movie-db.service';
   styleUrls: ['./categories-modular.component.scss']
 })
 export class CategoriesModularComponent implements OnInit {
-  
-  public lang: string;
-  public category: string;
+
+  public lang!: string;
+  public category!: string;
 
   constructor(
     private movieService: MovieDbService,
     private route: ActivatedRoute
   ) {
-      this.lang = this.route.snapshot.paramMap.get('lang')!
-      this.category = this.route.snapshot.paramMap.get('category')!
-      console.log('infos', this.lang, this.category);
+      this.route.params.subscribe((params: Params) => {
+        this.lang = params['lang']
+        this.category = params['category']
+        this.renderDefaultPage();
+      })
     }
 
   movies: Movie[] = [];
@@ -29,7 +31,7 @@ export class CategoriesModularComponent implements OnInit {
   linkImage: string = 'https://image.tmdb.org/t/p/w500/';
 
   selectedCountry: Country = {name: 'United States', code_country: 'US', code: 'en'};
-  
+
   countries: Country[] = [
     {name: 'United States', code_country: 'US', code: 'en'},
     {name: 'Brazil', code_country: 'BR', code: 'pt'},
@@ -44,22 +46,27 @@ export class CategoriesModularComponent implements OnInit {
   ngOnInit(): void {
     this.renderDefaultPage();
     console.log(this.lang, this.category);
-
   }
 
-  renderDefaultPage() {
+  test() {
+    console.log('Testes:');
+    console.log('Categoria',this.category);
+    console.log('Categoria',this.lang);
+  }
+
+  renderDefaultPage(): void {
     this.getMoviesPopular(this.category, 1, `${this.selectedCountry.code}-${this.selectedCountry.code_country}`)
   }
 
-  changeLanguage() {
+  changeLanguage(): void {
     this.movies = [];
     this.getMoviesPopular(this.category, 1, `${this.selectedCountry.code}-${this.selectedCountry.code_country}`)
   }
-  
+
   getMoviesPopular(category: string, page: number, language: string): void {
     console.log('Page:',page);
     console.log('Language:',language);
-    
+
     this.movieService.getAllMovieByCategory(category, page, language).subscribe({
       next: (movies) => {
         this.movies = movies.results
@@ -69,8 +76,8 @@ export class CategoriesModularComponent implements OnInit {
       }
     });
   }
-  
-  onPageChange(event: Page) {
+
+  onPageChange(event: Page): void {
     console.log(event);
     this.movies = [];
     this.getMoviesPopular(this.category, event.page+1, `${this.selectedCountry.code}-${this.selectedCountry.code_country}`)
