@@ -12,6 +12,7 @@
 
   <p-button label="Testing" (click)="test()"></p-button>
 
+
   <div class="card-default" >
     <div *ngFor="let movie of movies">
       <div class="movie-info">
@@ -25,9 +26,12 @@
           tooltipPosition="bottom">
         </p-rating>
       <h1>{{movie.vote_average | reduceNumberRating}}</h1>
-      <p-button label="WatchList" icon="pi pi-plus"></p-button>
+      <p-button (click)="addMovieUserList(movie)" label="WatchList" icon="pi pi-plus"></p-button>
       </div>
     </div>
   </div>
+
+  <p-toast position="top-right"></p-toast>
+
 
   <p-paginator [rows]="20" [totalRecords]="695253" (onPageChange)="onPageChange($event)"></p-paginator>

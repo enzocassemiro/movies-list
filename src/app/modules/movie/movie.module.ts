@@ -5,6 +5,7 @@ import { ButtonModule } from 'primeng/button';
 import { DropdownModule } from 'primeng/dropdown';
 import { PaginatorModule } from 'primeng/paginator';
 import { RatingModule } from 'primeng/rating';
+import { ToastModule } from 'primeng/toast';
 import { TooltipModule } from 'primeng/tooltip';
 import { ReduceNumberRatingPipe } from 'src/app/core/pipes/reduce-number-rating.pipe';
 import { TransformNumberStringPipe } from 'src/app/core/pipes/transform-number-string.pipe';
@@ -26,7 +27,8 @@ import { CategoriesModularComponent } from './pages/categories-modular/categorie
     RatingModule,
     TooltipModule,
     ButtonModule,
-    PaginatorModule
+    PaginatorModule,
+    ToastModule
   ]
 })
 export class MovieModule { }

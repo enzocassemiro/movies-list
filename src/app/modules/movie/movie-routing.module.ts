@@ -4,7 +4,7 @@ import { CategoriesModularComponent } from './pages/categories-modular/categorie
 
 const routes: Routes = [
   {
-    path:":lang/:category",
+    path:":category",
     component: CategoriesModularComponent
   }
 ];
