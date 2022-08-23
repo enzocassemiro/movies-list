@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap');
 
-$color-primary:black ; 
+$color-primary:black ;
 $font-primary: 'Montserrat', sans-serif;
 
 .card-default {
@@ -10,16 +10,19 @@ $font-primary: 'Montserrat', sans-serif;
   gap: 1em;
   place-content: center center;
   margin-top: 20px;
-  
+
   .movie-info {
     display: flex;
     flex-direction: column;
     place-content: center center;
     align-items: center;
+    max-height: 570px;
+    min-height: 570px;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 
     .image {
       max-height: 400px;
+      max-width: 270px;
     }
 
     .title {
@@ -31,7 +34,7 @@ $font-primary: 'Montserrat', sans-serif;
       text-align: center;
       font-family: $font-primary;
     }
-    
+
     .vote {
       font-family: $font-primary;
     }
