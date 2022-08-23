@@ -79,6 +79,9 @@ export class CategoriesModularComponent implements OnInit, OnDestroy {
       next: movie => {
       },
       error: err => {
+        if (err.status === 0) {
+          this.showError('Cannot add this movie in your list!', 'Looks like the api is down!');
+        }
         if (err.status === 500) {
           this.showError(err.statusText, 'This Movie is already in your list!');
         }
