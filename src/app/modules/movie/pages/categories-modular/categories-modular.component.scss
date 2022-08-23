@@ -5,18 +5,18 @@ $font-primary: 'Montserrat', sans-serif;
 
 .card-default {
   display: grid;
-  grid-template-columns: repeat(auto-fill, 440px);
+  grid-template-columns: repeat(auto-fill, 270px);
   grid-auto-rows: auto;
   gap: 1em;
   place-content: center center;
   margin-top: 20px;
   
   .movie-info {
-    border: 1px solid black;
     display: flex;
     flex-direction: column;
     place-content: center center;
     align-items: center;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 
     .image {
       max-height: 400px;
@@ -29,9 +29,20 @@ $font-primary: 'Montserrat', sans-serif;
       overflow: hidden;
       text-overflow: ellipsis;
       text-align: center;
-
+      font-family: $font-primary;
+    }
+    
+    .vote {
       font-family: $font-primary;
     }
 
+    .button-watch {
+      margin: 10px 0px 20px;
+    }
+
   }
+}
+
+.paginator {
+  padding: 50px ;
 }

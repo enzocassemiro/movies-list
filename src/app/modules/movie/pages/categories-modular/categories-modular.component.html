@@ -1,3 +1,5 @@
+<p-toast  position="top-right"></p-toast>
+
 <div>
     <p-dropdown
       appendTo="body"
@@ -8,30 +10,30 @@
       [showClear]="false"
       placeholder="Select a Country">
     </p-dropdown>
-  </div>
+</div>
 
-  <p-button label="Testing" (click)="test()"></p-button>
+<p-button label="Testing" (click)="test()"></p-button>
 
-
-  <div class="card-default" >
-    <div *ngFor="let movie of movies">
-      <div class="movie-info">
-        <img class="image" [src]="linkImage+movie.poster_path" alt="">
-        <h1 class="title">{{movie.title}}</h1>
-        <p-rating
-          [ngModel]="movie.vote_average | reduceNumberRating"
-          [pTooltip]="movie.vote_average | reduceNumberRating | transformNumberString"
-          [readonly]="true" [stars]="5"
-          [cancel]="false"
-          tooltipPosition="bottom">
-        </p-rating>
-      <h1>{{movie.vote_average | reduceNumberRating}}</h1>
-      <p-button (click)="addMovieUserList(movie)" label="WatchList" icon="pi pi-plus"></p-button>
-      </div>
+<div class="card-default" >
+  <div *ngFor="let movie of movies">
+    <div class="movie-info">
+      <img class="image" [src]="linkImage+movie.poster_path" alt="">
+      <h1 [pTooltip]="movie.title" tooltipPosition="bottom" class="title">{{movie.title}}</h1>
+      <p-rating
+        [ngModel]="movie.vote_average | reduceNumberRating"
+        [pTooltip]="movie.vote_average | reduceNumberRating | transformNumberString"
+        [readonly]="true" [stars]="5"
+        [cancel]="false"
+        tooltipPosition="bottom">
+      </p-rating>
+    <h3 class="vote">{{movie.vote_average | reduceNumberRating}}</h3>
+    <p-button class="button-watch" (click)="addMovieUserList(movie)" label="WatchList" icon="pi pi-plus"></p-button>
     </div>
   </div>
+</div>
+<div class="paginator">
+  <p-paginator  [rows]="20" [totalRecords]="695253" (onPageChange)="onPageChange($event)"></p-paginator>
+</div>
+  
 
-  <p-toast position="top-right"></p-toast>
 
-
-  <p-paginator [rows]="20" [totalRecords]="695253" (onPageChange)="onPageChange($event)"></p-paginator>
