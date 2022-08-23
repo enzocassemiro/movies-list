@@ -12,7 +12,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'movie',
+    redirectTo: 'movie/popular',
     pathMatch: 'full' 
   }
 ];
