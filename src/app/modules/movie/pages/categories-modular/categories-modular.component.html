@@ -17,7 +17,10 @@
 <div class="card-default" >
   <div *ngFor="let movie of movies">
     <div class="movie-info">
-      <img class="image" [src]="linkImage+movie.poster_path" alt="">
+      <img *ngIf="movie.poster_path != null; else imageNull" class="image" [src]="linkImage+movie.poster_path">
+      <ng-template #imageNull>
+        <img class="image" src="https://placehold.jp/30/11CF17/ffffff/270x400.png?text=Image+not+found!">
+      </ng-template>
       <h1 [pTooltip]="movie.title" tooltipPosition="bottom" class="title">{{movie.title}}</h1>
       <p-rating
         [ngModel]="movie.vote_average | reduceNumberRating"
@@ -34,6 +37,6 @@
 <div class="paginator">
   <p-paginator  [rows]="20" [totalRecords]="695253" (onPageChange)="onPageChange($event)"></p-paginator>
 </div>
-  
+
 
 

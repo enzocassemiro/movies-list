@@ -1,14 +1,26 @@
 <p-tabView styleClass="tabview-custom">
   <p-tabPanel>
-      <ng-template pTemplate = "header">
-          <i class="pi pi-video"></i>
-          <span>Movies</span>
-      </ng-template>
+    <ng-template pTemplate = "header">
+        <i class="pi pi-video"></i>
+        <span>Movies</span>
+    </ng-template>
+    <div *ngIf="movies.length == 0; else card">
+      <h1 class="list-missing">You dont have nothing in your list! 😯</h1>
+    </div>
+    <ng-template #card>
       <div class="card-default" >
         <div *ngFor="let movie of movies">
           <div class="movie-info">
-            <img class="image" [src]="linkImage+movie.poster_path" alt="">
-            <h1 [pTooltip]="movie.title" tooltipPosition="bottom" class="title">{{movie.title}}</h1>
+            <img *ngIf="movie.poster_path != null; else imageNull" class="image" [src]="linkImage+movie.poster_path">
+            <ng-template #imageNull>
+              <img class="image" src="https://placehold.jp/30/11CF17/ffffff/270x400.png?text=Image+not+found!">
+            </ng-template>
+            <h1
+              [pTooltip]="movie.title"
+              tooltipPosition="bottom"
+              class="title">
+              {{movie.title}}
+            </h1>
             <p-rating
               [ngModel]="movie.vote_average | reduceNumberRating"
               [pTooltip]="movie.vote_average | reduceNumberRating | transformNumberString"
@@ -16,30 +28,39 @@
               [cancel]="false"
               tooltipPosition="bottom">
             </p-rating>
-          <h3 class="vote">{{movie.vote_average | reduceNumberRating}}</h3>
-          <div class="button-watch">
-              <button (click)="deleteMovie(movie)" class="p-button-danger" icon="pi pi-trash" pButton pRipple type="button" [pTooltip]="'Delete'" tooltipPosition="bottom"  ></button>
+            <h3 class="vote">{{movie.vote_average | reduceNumberRating}}</h3>
+            <div class="button-watch">
+              <button
+                (click)="deleteMovie(movie)"
+                class="p-button-danger"
+                icon="pi pi-trash"
+                pButton pRipple
+                type="button"
+                [pTooltip]="'Delete'"
+                tooltipPosition="bottom"  >
+              </button>
+            </div>
           </div>
         </div>
-        </div>
-    </div>
+      </div>
+    </ng-template>
   </p-tabPanel>
   <p-tabPanel [disabled]="true" header="Header II">
-      <ng-template pTemplate = "header">
-          <i class="pi pi-ticket"></i>
-          <span>Series</span>
-      </ng-template>
-      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi
-          architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione
-          voluptatem sequi nesciunt. Consectetur, adipisci velit, sed quia non numquam eius modi.</p>
+    <ng-template pTemplate = "header">
+        <i class="pi pi-ticket"></i>
+        <span>Series</span>
+    </ng-template>
+    <p>rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi
+    </p>
   </p-tabPanel>
   <p-tabPanel header="Header III">
-      <ng-template pTemplate = "header">
-          <span>Add custom Movie or Serie</span>
-          <i class="pi pi-plus-circle"></i>
-      </ng-template>
-      <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati
-          cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.
-          Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus.</p>
+    <ng-template pTemplate = "header">
+      <span>Add custom Movie or Serie</span>
+      <i class="pi pi-plus-circle"></i>
+    </ng-template>
+    <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati
+        cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.
+        Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus.
+    </p>
   </p-tabPanel>
 </p-tabView>
