@@ -1,8 +1,14 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { ButtonModule } from 'primeng/button';
+import { RatingModule } from 'primeng/rating';
+import { TabViewModule } from 'primeng/tabview';
+import { TooltipModule } from 'primeng/tooltip';
 
-import { UserRoutingModule } from './user-routing.module';
+import { SharedPipesModule } from '../shared-pipes/shared-pipes.module';
 import { ListComponent } from './pages/list/list.component';
+import { UserRoutingModule } from './user-routing.module';
 
 
 @NgModule({
@@ -11,7 +17,13 @@ import { ListComponent } from './pages/list/list.component';
   ],
   imports: [
     CommonModule,
-    UserRoutingModule
+    UserRoutingModule,
+    TooltipModule,
+    ButtonModule,
+    RatingModule,
+    FormsModule,
+    SharedPipesModule,
+    TabViewModule
   ]
 })
 export class UserModule { }

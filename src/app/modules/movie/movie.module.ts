@@ -7,16 +7,13 @@ import { PaginatorModule } from 'primeng/paginator';
 import { RatingModule } from 'primeng/rating';
 import { ToastModule } from 'primeng/toast';
 import { TooltipModule } from 'primeng/tooltip';
-import { ReduceNumberRatingPipe } from 'src/app/core/pipes/reduce-number-rating.pipe';
-import { TransformNumberStringPipe } from 'src/app/core/pipes/transform-number-string.pipe';
 
+import { SharedPipesModule } from '../shared-pipes/shared-pipes.module';
 import { MovieRoutingModule } from './movie-routing.module';
 import { CategoriesModularComponent } from './pages/categories-modular/categories-modular.component';
 
 @NgModule({
   declarations: [
-    TransformNumberStringPipe,
-    ReduceNumberRatingPipe,
     CategoriesModularComponent
   ],
   imports: [
@@ -28,7 +25,8 @@ import { CategoriesModularComponent } from './pages/categories-modular/categorie
     TooltipModule,
     ButtonModule,
     PaginatorModule,
-    ToastModule
+    ToastModule,
+    SharedPipesModule
   ]
 })
 export class MovieModule { }
