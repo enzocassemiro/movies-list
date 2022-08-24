@@ -23,7 +23,9 @@
         background: #11CF17;
         background: linear-gradient(to right, #11CF17 21%, #000000 100%);
         -webkit-background-clip: text;
+        background-clip: text;
         -webkit-text-fill-color: transparent;
+        cursor: pointer;
     }
 
     .options {
@@ -51,11 +53,13 @@
   margin-bottom: 50px;
 
   .title {
+    cursor: pointer;
     font-family: 'Karla', sans-serif;
     font-size: 1.5em;
     background: #11CF17;
     background: linear-gradient(to right, #11CF17 21%, #000000 100%);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
   }
 
