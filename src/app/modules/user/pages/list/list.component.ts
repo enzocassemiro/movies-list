@@ -29,11 +29,11 @@ export class ListComponent implements OnInit, OnDestroy {
   moviesCustom: MovieCustom[] = [];
 
   movieSelectedDelete!: Movie;
-  
+
   movieCustomSelectedDelete!: MovieCustom;
 
   movieCustom!: MovieCustom;
-  
+
   linkImage: string = 'https://image.tmdb.org/t/p/w500/';
 
   display: boolean = false;
@@ -74,9 +74,7 @@ export class ListComponent implements OnInit, OnDestroy {
       complete: () => {
         this.renderCustomMovieList();
         this.showSuccess('You added a movie in your custom list', `You added movie ${this.movieCustom.title}`);
-        // this.movieCustomForm = '';
-        this.movieCustom.poster_path = '';
-        this.movieCustom.plataform = '';
+        this.movieCustomForm.reset();
       }
     })
   }
@@ -87,11 +85,11 @@ export class ListComponent implements OnInit, OnDestroy {
     .subscribe({
       next: (moviesCustom) => {
         console.log('Custom');
-        
+
         console.log(this.moviesCustom);
         this.moviesCustom = moviesCustom
         console.log(this.moviesCustom);
-        
+
       }
     })
   }
@@ -102,7 +100,7 @@ export class ListComponent implements OnInit, OnDestroy {
     .subscribe({
       next: (movies) => {
         console.log('Movie');
-        
+
         console.log(this.movies);
         this.movies = movies
         console.log(this.movies);
