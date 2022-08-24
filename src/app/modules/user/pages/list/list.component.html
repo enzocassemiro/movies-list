@@ -1,3 +1,5 @@
+<p-toast  position="top-right"></p-toast>
+
 <p-tabView styleClass="tabview-custom">
   <p-tabPanel>
     <ng-template pTemplate = "header">
@@ -31,7 +33,7 @@
             <h3 class="vote">{{movie.vote_average | reduceNumberRating}}</h3>
             <div class="button-watch">
               <button
-                (click)="deleteMovie(movie)"
+                (click)="showDialogDelete(movie)"
                 class="p-button-danger"
                 icon="pi pi-trash"
                 pButton pRipple
@@ -64,3 +66,12 @@
     </p>
   </p-tabPanel>
 </p-tabView>
+
+<p-dialog [modal]="true" header="Are you sure you want delete?" [(visible)]="display">
+  You are deleting room
+  <ng-template pTemplate="footer">
+    <button (click)="deleteMovie()" pButton pRipple icon="pi pi-trash" type="button" label="Delete" class="p-button-danger"></button>
+    <button (click)="showWarn('You cancelled your deletion', '😉')" pButton pRipple type="button" label="Cancel" ></button>
+  </ng-template>
+</p-dialog>
+
