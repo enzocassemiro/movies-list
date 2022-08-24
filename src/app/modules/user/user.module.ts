@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
+import { InputTextModule } from 'primeng/inputtext';
 import { RatingModule } from 'primeng/rating';
 import { TabViewModule } from 'primeng/tabview';
 import { ToastModule } from 'primeng/toast';
@@ -26,7 +27,9 @@ import { UserRoutingModule } from './user-routing.module';
     SharedPipesModule,
     TabViewModule,
     DialogModule,
-    ToastModule
+    ToastModule,
+    ReactiveFormsModule,
+    InputTextModule
   ]
 })
 export class UserModule { }

@@ -45,9 +45,63 @@ $font-primary: 'Montserrat', sans-serif;
     }
 }
 
+.card-default-custom {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 270px);
+    grid-auto-rows: auto;
+    gap: 1em;
+    place-content: center center;
+    margin-top: 20px;
+
+    .movie-info {
+      display: flex;
+      flex-direction: column;
+      place-content: center center;
+      align-items: center;
+      max-height: 570px;
+      min-height: 570px;
+      box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+      .image {
+        max-height: 400px;
+        max-width: 270px;
+      }
+
+      .title {
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        text-align: center;
+        font-family: $font-primary;
+      }
+
+      .vote {
+        font-family: $font-primary;
+      }
+
+      .button-watch {
+        margin: 10px 0px 20px;
+      }
+
+    }
+}
+
 .list-missing {
   display: flex;
   place-content: center center;
   align-items: center;
   text-align: center;
+}
+
+.form-flex {
+  display: flex;
+  place-content: center center;
+
+  .form-movie {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+  }
 }
