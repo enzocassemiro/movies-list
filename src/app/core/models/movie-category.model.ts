@@ -1,6 +1,6 @@
 import { Movie } from "./movie.models";
 
-export interface MoviePopularPages {
+export interface MovieCategoryPages {
   page: number,
   results: Movie[],
   total_pages: number,
