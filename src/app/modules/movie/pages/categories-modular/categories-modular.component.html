@@ -17,11 +17,11 @@
 <div class="card-default" >
   <div *ngFor="let movie of movies">
     <div class="movie-info">
-      <img *ngIf="movie.poster_path != null; else imageNull" class="image" [src]="linkImage+movie.poster_path">
+      <img [routerLink]="'/movie/detail/'+movie.id" *ngIf="movie.poster_path != null; else imageNull" class="image" [src]="linkImage+movie.poster_path">
       <ng-template #imageNull>
         <img class="image" src="https://placehold.jp/30/11CF17/ffffff/270x400.png?text=Image+not+found!">
       </ng-template>
-      <h1 [pTooltip]="movie.title" tooltipPosition="bottom" class="title">{{movie.title}}</h1>
+      <h1 [routerLink]="'/movie/detail/'+movie.id" [pTooltip]="movie.title" tooltipPosition="bottom" class="title">{{movie.title}}</h1>
       <p-rating
         [ngModel]="movie.vote_average | reduceNumberRating"
         [pTooltip]="movie.vote_average | reduceNumberRating | transformNumberString"

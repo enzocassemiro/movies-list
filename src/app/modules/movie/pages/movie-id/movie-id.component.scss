@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300&display=swap');
+
+.container {
+  margin: 50px;
+  display: grid;
+  grid-template-columns: min-content 1fr;
+  grid-template-rows: 1fr;
+  grid-column-gap: 50px;
+  grid-row-gap: 0px;
+
+  .img img {
+    border-radius: 10px;
+  }
+
+  .title {
+    font-family: 'Source Sans Pro', sans-serif;
+  }
+  .title-original {
+    font-family: 'Source Sans Pro', sans-serif;
+  }
+}

@@ -11,10 +11,12 @@ import { TooltipModule } from 'primeng/tooltip';
 import { SharedPipesModule } from '../shared-pipes/shared-pipes.module';
 import { MovieRoutingModule } from './movie-routing.module';
 import { CategoriesModularComponent } from './pages/categories-modular/categories-modular.component';
+import { MovieIdComponent } from './pages/movie-id/movie-id.component';
 
 @NgModule({
   declarations: [
-    CategoriesModularComponent
+    CategoriesModularComponent,
+    MovieIdComponent
   ],
   imports: [
     CommonModule,

@@ -18,4 +18,8 @@ export class MovieDbService {
   getAllMovieByCategory(category: string, page: number, language: string): Observable<MovieCategoryPages> {
     return this.http.get<MovieCategoryPages>(`${this.apiURL}movie/${category}?api_key=${this.apiKEY}&language=${language}&page=${page}`)
   }
+
+  getMovieById(id: string): Observable<any> {
+    return this.http.get<any>(`${this.apiURL}movie/${id}?api_key=${this.apiKEY}&language=en-US`)
+  }
 }
