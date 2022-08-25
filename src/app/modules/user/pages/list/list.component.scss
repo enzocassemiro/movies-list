@@ -22,8 +22,9 @@ $font-primary: 'Montserrat', sans-serif;
 
       .image {
         max-height: 400px;
+        cursor: pointer;
       }
-
+      
       .title {
         display: -webkit-box;
         -webkit-line-clamp: 1;
@@ -32,6 +33,7 @@ $font-primary: 'Montserrat', sans-serif;
         text-overflow: ellipsis;
         text-align: center;
         font-family: $font-primary;
+        cursor: pointer;
       }
 
       .vote {

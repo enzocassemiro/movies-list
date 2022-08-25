@@ -2,7 +2,6 @@
 
 <p-tabView styleClass="tabview-custom">
   
-  
   <p-tabPanel header="Movies">
     <ng-template pTemplate = "header">
         <i class="pi pi-video"></i>
@@ -15,11 +14,18 @@
       <div class="card-default" >
         <div *ngFor="let movie of movies">
           <div class="movie-info">
-            <img *ngIf="movie.poster_path != null; else imageNull" class="image" [src]="linkImage+movie.poster_path">
+            <img 
+            [routerLink]="'/movie/detail/'+movie.id" 
+            *ngIf="movie.poster_path != null; else imageNull" 
+            class="image" 
+            [src]="linkImage+movie.poster_path">
             <ng-template #imageNull>
-              <img class="image" src="https://placehold.jp/30/11CF17/ffffff/270x400.png?text=Image+not+found!">
+              <img 
+              class="image" 
+              src="https://placehold.jp/30/11CF17/ffffff/270x400.png?text=Image+not+found!">
             </ng-template>
             <h1
+              [routerLink]="'/movie/detail/'+movie.id" 
               [pTooltip]="movie.title"
               tooltipPosition="bottom"
               class="title">
@@ -49,6 +55,7 @@
       </div>
     </ng-template>
   </p-tabPanel>
+
   <p-tabPanel header="Custom Movies">
     <ng-template pTemplate = "header">
       <span>Custom Movies</span>
@@ -61,9 +68,14 @@
       <div class="card-default-custom" >
         <div *ngFor="let movie of moviesCustom">
           <div class="movie-info">
-            <img *ngIf="movie.poster_path != ''; else imageNull" class="image" [src]="movie.poster_path">
+            <img 
+            *ngIf="movie.poster_path != ''; else imageNull" 
+            class="image" 
+            [src]="movie.poster_path">
             <ng-template #imageNull>
-              <img class="image" src="https://placehold.jp/30/11CF17/ffffff/270x400.png?text=Image+not+found!">
+              <img 
+              class="image" 
+              src="https://placehold.jp/30/11CF17/ffffff/270x400.png?text=Image+not+found!">
             </ng-template>
             <h1
               [pTooltip]="movie.title"
@@ -94,6 +106,7 @@
       </div>
     </ng-template>
   </p-tabPanel>
+
   <p-tabPanel [disabled]="true" header="Series">
     <ng-template pTemplate = "header">
         <i class="pi pi-ticket"></i>
@@ -102,12 +115,14 @@
     <p>rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi
     </p>
   </p-tabPanel>
+
   <p-tabPanel [disabled]="true" header="Custom Series">
     <ng-template pTemplate = "header">
       <span>Custom Series</span>
       <i class="pi pi-tags"></i>
     </ng-template>
   </p-tabPanel>
+
   <p-tabPanel header="Add custom Movie">
     <ng-template pTemplate = "header">
       <span>Add custom Movie</span>
@@ -123,27 +138,59 @@
         <label for="movie-plataform">Movie Plataform *:</label>
         <input type="text" pInputText id="movie-plataform" formControlName="plataform"> 
         <small id="movie-plataform-help" class="block">Ex: Netflix, Amazon Prime, HBO...</small> 
-        <p-button type="submit" label="Create" icon="pi pi-check" [disabled]="!movieCustomForm.valid" iconPos="right"></p-button>
+        <p-button 
+          type="submit" 
+          label="Create" 
+          icon="pi pi-check" 
+          [disabled]="!movieCustomForm.valid" 
+          iconPos="right">
+        </p-button>
       </form>
     </div>
   </p-tabPanel>
-  
-  
 </p-tabView>
 
 <p-dialog [modal]="true" header="Are you sure you want delete this movie?" [(visible)]="display">
   You are removing a movie from your list!
   <ng-template pTemplate="footer">
-    <button (click)="deleteMovie()" pButton pRipple icon="pi pi-trash" type="button" label="Delete" class="p-button-danger"></button>
-    <button (click)="showWarn('You cancelled your deletion!', '😉')" pButton pRipple type="button" label="Cancel" ></button>
+    <button 
+      (click)="deleteMovie()" 
+      pButton 
+      pRipple 
+      icon="pi pi-trash" 
+      type="button" 
+      label="Delete" 
+      class="p-button-danger">
+    </button>
+    <button 
+      (click)="showWarn('You cancelled your deletion!', '😉')" 
+      pButton 
+      pRipple 
+      type="button" 
+      label="Cancel" >
+    </button>
   </ng-template>
 </p-dialog>
 
 <p-dialog [modal]="true" header="Are you sure you want delete this Custom movie?" [(visible)]="displayCustom">
-  You are removing a movie from your list!
+  You are removing a custom movie from your list!
   <ng-template pTemplate="footer">
-    <button (click)="deleteCustomMovie()" pButton pRipple icon="pi pi-trash" type="button" label="Delete" class="p-button-danger"></button>
-    <button (click)="showWarn('You cancelled your deletion!', '😉')" pButton pRipple type="button" label="Cancel" ></button>
+    <button 
+      (click)="deleteCustomMovie()" 
+      pButton 
+      pRipple 
+      icon="pi pi-trash" 
+      type="button" 
+      label="Delete" 
+      class="p-button-danger">
+    </button>
+    <button 
+      (click)="showWarn('You cancelled your deletion!', '😉')" 
+      pButton 
+      pRipple 
+      type="button" 
+      label="Cancel">
+    </button>
   </ng-template>
 </p-dialog>
 
