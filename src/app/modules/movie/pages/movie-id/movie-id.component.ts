@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
+import { MovieDetail } from 'src/app/core/models/movie-detail.model';
 import { MovieDbService } from 'src/app/core/services/api/movie-db.service';
 
 @Component({
@@ -26,7 +27,7 @@ export class MovieIdComponent implements OnInit, OnDestroy {
 
   linkImage: string = 'https://image.tmdb.org/t/p/w500';
 
-  movieDetail!: any;
+  movieDetail!: MovieDetail;
 
   ngOnInit(): void {
     console.log(this.linkId);
@@ -49,6 +50,10 @@ export class MovieIdComponent implements OnInit, OnDestroy {
 
       }
     })
+  }
+
+  navigateTo(movieHomePage: string) {
+    window.open(movieHomePage, '_blank');
   }
 
 }

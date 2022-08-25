@@ -13,9 +13,31 @@
   }
 
   .title {
+    font-size: 1.2em;
     font-family: 'Source Sans Pro', sans-serif;
   }
   .title-original {
+    font-size: 0.7em;
     font-family: 'Source Sans Pro', sans-serif;
+  }
+  
+  .status {
+  }
+
+  .overview {
+    padding-top: 30px;
+    font-family: 'Source Sans Pro', sans-serif;
+  }
+  
+  .rating {
+    padding-top: 30px;
+    display: flex;
+    flex-direction: column;
+    place-content: center flex-start;
+    font-family: 'Source Sans Pro', sans-serif;
+  }
+
+  .homepage{
+    margin-top: 20px;
   }
 }

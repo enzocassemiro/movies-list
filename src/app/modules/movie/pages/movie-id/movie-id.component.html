@@ -1,20 +1,47 @@
 <div class="container">
   <div class="img">
-    <img [src]="linkImage+movieDetail?.poster_path" alt="">
+    <img [src]="linkImage+movieDetail.poster_path" alt="">
   </div>
   <div>
     <div class="title">
-      <h1>Movie Title: {{movieDetail?.title}}</h1>
+      <h1>{{movieDetail.title}}</h1>
     </div>
     <div class="title-original">
-      <h1>Movie Original Title: {{movieDetail?.original_title}}</h1>
+      <h2>Original Title: {{movieDetail.original_title}}</h2>
+      <h2>{{movieDetail.tagline}}</h2>
+      <h2>{{movieDetail.runtime}} minutes</h2>
     </div>
-    <div>
-      <h3>{{movieDetail?.overview}}</h3>
+    <div class="status">
+      <button
+        class="p-button-outlined" 
+        pButton 
+        pRipple 
+        type="button" 
+        [label]="movieDetail.status">
+      </button>
     </div>
-    <div>
-      <h1>Nota</h1>
+    <div class="rating">
+      <p-rating
+       [ngModel]="movieDetail.vote_average" 
+       [readonly]="true" 
+       [stars]="10" 
+       [cancel]="false">
+      </p-rating>
+      <h2>Vote average: {{movieDetail.vote_average}}</h2>
+      <h2>Vote count: {{movieDetail.vote_count}}</h2>
+    </div>
+    <div class="overview">
+      <h3>{{movieDetail.overview}}</h3>
+    </div>
+    <div *ngIf="movieDetail.homepage">
+      <button 
+        class="homepage"
+        (click)="navigateTo(movieDetail.homepage)" 
+        pButton 
+        pRipple 
+        type="button" 
+        label="Movie Page">
+      </button>
     </div>
   </div>
-
 </div>
