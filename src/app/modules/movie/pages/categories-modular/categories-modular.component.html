@@ -1,34 +1,27 @@
 <p-toast  position="top-right"></p-toast>
 
-<!-- <div>
-    <p-dropdown
-      appendTo="body"
-      [options]="countries"
-      [(ngModel)]="selectedCountry"
-      (ngModelChange)="changeLanguage()"
-      optionLabel="name"
-      [showClear]="false"
-      placeholder="Select a Country">
-    </p-dropdown>
-</div>
-
-<p-button label="Testing" (click)="test()"></p-button> -->
+<!-- <form [formGroup]="searchForm">
+  <span class="p-input-icon-left">
+    <i class="pi pi-search"></i>
+    <input type="text" pInputText placeholder="Search" (keyup)="onSearch($event)" formControlName="search"/>
+  </span>
+</form> -->
 
 <div class="card-default" >
   <div *ngFor="let movie of movies">
     <div class="movie-info">
-      <img 
-        [routerLink]="'/movie/detail/'+movie.id" 
-        *ngIf="movie.poster_path != null; else imageNull" 
-        class="image" 
+      <img
+        [routerLink]="'/movie/detail/'+movie.id"
+        *ngIf="movie.poster_path != null; else imageNull"
+        class="image"
         [src]="linkImage+movie.poster_path">
       <ng-template #imageNull>
         <img class="image" src="https://placehold.jp/30/11CF17/ffffff/270x400.png?text=Image+not+found!">
       </ng-template>
-      <h1 
-        [routerLink]="'/movie/detail/'+movie.id" 
-        [pTooltip]="movie.title" 
-        tooltipPosition="bottom" 
+      <h1
+        [routerLink]="'/movie/detail/'+movie.id"
+        [pTooltip]="movie.title"
+        tooltipPosition="bottom"
         class="title">{{movie.title}}
       </h1>
       <p-rating
@@ -39,19 +32,19 @@
         tooltipPosition="bottom">
       </p-rating>
     <h3 class="vote">{{movie.vote_average | reduceNumberRating}}</h3>
-    <p-button 
-      class="button-watch" 
-      (click)="addMovieUserList(movie)" 
-      label="WatchList" 
+    <p-button
+      class="button-watch"
+      (click)="addMovieUserList(movie)"
+      label="WatchList"
       icon="pi pi-plus">
     </p-button>
     </div>
   </div>
 </div>
 <div class="paginator">
-  <p-paginator 
-    [rows]="20" 
-    [totalRecords]="695253" 
+  <p-paginator
+    [rows]="20"
+    [totalRecords]="pageCount"
     (onPageChange)="onPageChange($event)">
   </p-paginator>
 </div>
