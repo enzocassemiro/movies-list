@@ -51,11 +51,7 @@ export class ListComponent implements OnInit, OnDestroy {
     this.componentDestroyer$.complete()
   }
 
-  test() {
-
-  }
-
-  setupForm() {
+  setupForm(): void {
     this.movieCustomForm = this.fb.group({
       title: ['',[Validators.required]],
       poster_path: [''],
@@ -63,11 +59,8 @@ export class ListComponent implements OnInit, OnDestroy {
     })
   }
 
-  sendForm() {
-    console.log(this.movieCustom);
-    console.log(this.movieCustomForm);
+  sendForm(): void {
     this.movieCustom = this.movieCustomForm.value;
-
     this.listService.postMovieCustomList(this.movieCustom)
     .pipe(takeUntil(this.componentDestroyer$))
     .subscribe({
@@ -84,12 +77,7 @@ export class ListComponent implements OnInit, OnDestroy {
     .pipe(takeUntil(this.componentDestroyer$))
     .subscribe({
       next: (moviesCustom) => {
-        console.log('Custom');
-
-        console.log(this.moviesCustom);
         this.moviesCustom = moviesCustom
-        console.log(this.moviesCustom);
-
       }
     })
   }
@@ -99,16 +87,12 @@ export class ListComponent implements OnInit, OnDestroy {
     .pipe(takeUntil(this.componentDestroyer$))
     .subscribe({
       next: (movies) => {
-        console.log('Movie');
-
-        console.log(this.movies);
         this.movies = movies
-        console.log(this.movies);
       }
     })
   }
 
-  deleteMovie() {
+  deleteMovie(): void {
     const {id, title} = this.movieSelectedDelete
     this.listService.deleteMovieList(id)
     .pipe(takeUntil(this.componentDestroyer$))

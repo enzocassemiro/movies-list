@@ -5,9 +5,10 @@ import { Movie } from 'src/app/core/models/movie.models';
 import { Page } from 'src/app/core/models/pages.model';
 import { MovieDbService } from 'src/app/core/services/api/movie-db.service';
 import { Subject } from "rxjs"
-import { takeUntil } from "rxjs/operators"
+import { debounceTime, takeUntil } from "rxjs/operators"
 import { ListService } from 'src/app/core/services/list/list.service';
 import { MessageService } from 'primeng/api';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-categories-modular',
@@ -21,15 +22,20 @@ export class CategoriesModularComponent implements OnInit, OnDestroy {
     private movieService: MovieDbService,
     private listService: ListService,
     private messageService: MessageService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private fb: FormBuilder
   ) {
       this.route.params.subscribe((params: Params) => {
         this.category = params['category']
+        // this.searchForm.reset();
         this.renderDefaultPage();
       })
+      this.setupSearchForm();
     }
 
   public category!: string;
+
+  private subjectKeyUp = new Subject<any>();
 
   componentDestroyed$: Subject<boolean> = new Subject()
 
@@ -38,6 +44,14 @@ export class CategoriesModularComponent implements OnInit, OnDestroy {
   linkImage: string = 'https://image.tmdb.org/t/p/w500/';
 
   selectedCountry: Country = {name: 'United States', code_country: 'US', code: 'en'};
+
+  searchInput!: string;
+
+  searchForm!: FormGroup;
+
+  pageActual!: number;
+
+  pageCount!: number;
 
   countries: Country[] = [
     {name: 'United States', code_country: 'US', code: 'en'},
@@ -52,7 +66,13 @@ export class CategoriesModularComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.renderDefaultPage();
-    console.log(this.category);
+    this.subjectKeyUp
+    .pipe((debounceTime(900)), takeUntil(this.componentDestroyed$))
+    .subscribe(
+      (inputText) => {
+        this.getMoviesSearch(inputText)
+      }
+    )
   }
 
   ngOnDestroy(): void {
@@ -60,22 +80,42 @@ export class CategoriesModularComponent implements OnInit, OnDestroy {
     this.componentDestroyed$.complete()
   }
 
-  getMoviesPopular(category: string, page: number, language: string): void {
-    console.log('Page:',page);
-    console.log('Language:',language);
+  setupSearchForm(): void {
+    this.searchForm = this.fb.group({
+      search: ['']
+    })
+  }
 
-    this.movieService.getAllMovieByCategory(category, page, language).pipe(takeUntil(this.componentDestroyed$)).subscribe({
+  onSearch(event: any): void {
+    const value = event.target.value;
+    this.subjectKeyUp.next(value)
+  }
+
+  getMoviesPopular(category: string, page: number, language: string): void {
+    this.movieService.getAllMovieByCategory(category, page, language)
+    .pipe(takeUntil(this.componentDestroyed$))
+    .subscribe({
       next: (movies) => {
-        this.movies = movies.results
-      },
-      error: (err: Error) => {
-        console.log('Deu ruim');
+        this.movies = movies.results;
+        this.pageActual = movies.page;
+        this.pageCount = movies.total_pages;
       }
     });
   }
 
-  addMovieUserList(movie: Movie) {
-    this.listService.postMovieList(movie).pipe(takeUntil(this.componentDestroyed$)).subscribe({
+  getMoviesSearch(text: string): void {
+    this.movieService.getMovieSearch(text)
+    .pipe(takeUntil(this.componentDestroyed$))
+    .subscribe({
+      next: movies => {
+      }
+    })
+  }
+
+  addMovieUserList(movie: Movie): void {
+    this.listService.postMovieList(movie)
+    .pipe(takeUntil(this.componentDestroyed$))
+    .subscribe({
       next: movie => {
       },
       error: err => {
@@ -88,16 +128,9 @@ export class CategoriesModularComponent implements OnInit, OnDestroy {
 
       },
       complete: () => {
-        this.showSuccess('Movie added in your list!',`You added movie: ${movie.title}`);        
+        this.showSuccess('Movie added in your list!',`You added movie: ${movie.title}`);
       },
     })
-    
-
-  }
-
-  test() {
-    console.log('Testes:');
-    console.log('Categoria',this.category);
   }
 
   renderDefaultPage(): void {
@@ -110,15 +143,16 @@ export class CategoriesModularComponent implements OnInit, OnDestroy {
   }
 
   onPageChange(event: Page): void {
-    console.log(event);
+    this.pageActual = event.page
+    this.pageCount = event.pageCount
     this.movies = [];
     this.getMoviesPopular(this.category, event.page+1, `${this.selectedCountry.code}-${this.selectedCountry.code_country}`)
   }
 
-  showSuccess(title: string, message: string) {
+  showSuccess(title: string, message: string): void {
     this.messageService.add({severity:'success', summary: title, detail: message});
   }
-  showError(title:string, message: string) {
+  showError(title:string, message: string): void {
     this.messageService.add({severity:'error', summary: title, detail: message});
   }
 }

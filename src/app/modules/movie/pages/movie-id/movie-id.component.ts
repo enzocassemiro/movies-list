@@ -39,21 +39,17 @@ export class MovieIdComponent implements OnInit, OnDestroy {
     this.componentDestroyed$.complete()
   }
 
-  getMovieById() {
+  getMovieById(): void {
     this.movieService.getMovieById(this.linkId)
     .pipe(takeUntil(this.componentDestroyed$))
     .subscribe({
       next: (movie) => {
-        console.log(this.movieDetail);
         this.movieDetail = movie;
-        console.log(this.movieDetail);
-
       }
     })
   }
 
-  navigateTo(movieHomePage: string) {
+  navigateTo(movieHomePage: string): void {
     window.open(movieHomePage, '_blank');
   }
-
 }
