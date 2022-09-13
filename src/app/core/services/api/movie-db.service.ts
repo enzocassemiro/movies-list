@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { MovieCategoryPages } from '../../models/movie-category.model';
+import { MovieDetail } from '../../models/movie-detail.model';
 
 
 @Injectable({
@@ -19,7 +20,11 @@ export class MovieDbService {
     return this.http.get<MovieCategoryPages>(`${this.apiURL}movie/${category}?api_key=${this.apiKEY}&language=${language}&page=${page}`)
   }
 
-  getMovieById(id: string): Observable<any> {
-    return this.http.get<any>(`${this.apiURL}movie/${id}?api_key=${this.apiKEY}&language=en-US`)
+  getMovieById(id: string): Observable<MovieDetail> {
+    return this.http.get<MovieDetail>(`${this.apiURL}movie/${id}?api_key=${this.apiKEY}&language=en-US`)
+  }
+
+  getMovieSearch(text: string): Observable<MovieCategoryPages> {
+    return this.http.get<MovieCategoryPages>(`${this.apiURL}search/movie?api_key=${this.apiKEY}&language=en-US&query=${text}&include_adult=false`)
   }
 }
