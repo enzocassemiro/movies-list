@@ -1,6 +1,6 @@
 # MoviesList
 
-### Project of an e-commerce to practice knowledge in Angular and TS.
+### Project of an movie list to practice knowledge in Angular and TS.
 
 ## 💻 Stack
 <div>
